@@ -14,11 +14,11 @@ public interface AccountService {
     delete an account
     delete all accounts
      */
-    void saveAccount(Account account);
+    Account saveAccount(Account account);
 
     Account getAccount(Long id);
 
-    List<Account> findaAllAccounts(Account account);
+    List<Account> findaAllAccounts();
 
     List<Account> findAccount(Long id, Account account);
 

@@ -5,6 +5,7 @@ import com.yvan.budget_app_v2_backend.Repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountServiceImpl implements AccountService{
@@ -17,8 +18,9 @@ public class AccountServiceImpl implements AccountService{
 
 
     @Override
-    public void saveAccount(Account account) {
-
+    public Account saveAccount(Account account) {
+    Account incomingAccountTosave = accountRepository.save(account);
+    return incomingAccountTosave;
     }
 
     @Override
@@ -27,8 +29,14 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public List<Account> findaAllAccounts(Account account) {
-        return null;
+    public List<Account> findaAllAccounts() {
+        List<Account> accountFromDB = accountRepository.findAll();
+        if(accountFromDB.isEmpty()){
+            System.out.println("There are currently no accounts");
+            return null;
+        }else{
+           return accountFromDB;
+        }
     }
 
     @Override
